@@ -8,7 +8,15 @@ def count_words(sentence):
     Returns:
         the number of words in the sentence
     """
-    return 0
+    count = 0
+    word = False
+    for i in sentence:
+        if i.isspace():
+            word = False
+        elif not word:
+            count += 1
+            word = True
+    return count
 
 
 if __name__ == '__main__':
