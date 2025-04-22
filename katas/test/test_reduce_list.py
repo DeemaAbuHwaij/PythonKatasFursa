@@ -1,5 +1,5 @@
 import unittest
-from katas.reduce_list import reduce_array, print_list
+from katas.reduce_list import reduce_array
 
 
 
