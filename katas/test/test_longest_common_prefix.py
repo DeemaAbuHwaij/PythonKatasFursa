@@ -12,6 +12,7 @@ class MyTestCase(unittest.TestCase):
     def test4(self):
         self.assertEqual(longest_common_prefix(["apple", "apricot", "ape"]), "ap")  # add assertion here
 
+
 if __name__ == '__main__':
     unittest.main()
 
