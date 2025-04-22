@@ -12,8 +12,11 @@ def measure_execution_time(func):
         the execution time in milliseconds
     """
     # hint: time.time()
-    return 0
-
+    start_time = time.time()
+    func()
+    end_time = time.time()
+    elapsed_time = (end_time - start_time) * 1000  # Convert to milliseconds
+    return round(elapsed_time, 2)
 
 def sample_function():
     """A function that sleeps for 500ms."""
