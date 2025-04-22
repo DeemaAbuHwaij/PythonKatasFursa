@@ -11,7 +11,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(find_difference([10, 30, 5, 6, 20, 1]), 29)  # add assertion here
 
 
-
 if __name__ == '__main__':
     unittest.main()
 
