@@ -5,7 +5,14 @@ def rotate_matrix(matrix):
     Args:
         matrix: the 2D square matrix to rotate
     """
-    pass
+    n = len(matrix)
+    for i in range(n):
+        for j in range(i + 1, n):
+            temp = matrix[i][j]
+            matrix[i][j] = matrix[j][i]
+            matrix[j][i] = temp
+    for row in matrix:
+        row.reverse()
 
 
 def print_matrix(matrix):
