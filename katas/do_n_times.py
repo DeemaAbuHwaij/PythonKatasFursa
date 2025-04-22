@@ -20,6 +20,7 @@ def print_message():
     print("Python is fun!")
 
 
+
 if __name__ == '__main__':
     print("Calling function 3 times:")
     do_n_times(say_hello, 3)
