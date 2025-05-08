@@ -18,8 +18,20 @@ def compare_versions(version1, version2):
          0 if version1 = version2
          1 if version1 > version2
     """
-    return 0
+    v1 = list(map(int, version1.split('.')))
+    v2 = list(map(int, version2.split('.')))
 
+    # Pad the shorter version with zeros
+    max_len = max(len(v1), len(v2))
+    v1 += [0] * (max_len - len(v1))
+    v2 += [0] * (max_len - len(v2))
+
+    for a, b in zip(v1, v2):
+        if a < b:
+            return -1
+        elif a > b:
+            return 1
+    return 0
 
 if __name__ == '__main__':
     print(f"'1.0.0' compared to '1.0.1': {compare_versions('1.0.0', '1.0.1')}")  # Expected: -1

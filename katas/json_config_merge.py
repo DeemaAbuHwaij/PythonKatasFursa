@@ -57,8 +57,22 @@ def json_configs_merge(*json_paths: str) -> dict[str, Any]:
     Returns:
         dict: The merged configuration dictionary.
     """
-    return None
 
+    def merge_dicts(a: dict, b: dict) -> dict:
+        for key, value in b.items():
+            if key in a and isinstance(a[key], dict) and isinstance(value, dict):
+                a[key] = merge_dicts(a[key], value)
+            else:
+                a[key] = value
+        return a
+
+    def json_configs_merge(*json_paths: str) -> dict[str, Any]:
+        merged_config = {}
+        for path in json_paths:
+            with open(path, 'r') as f:
+                current_config = json.load(f)
+                merged_config = merge_dicts(merged_config, current_config)
+        return merged_config
 
 
 if __name__ == '__main__':

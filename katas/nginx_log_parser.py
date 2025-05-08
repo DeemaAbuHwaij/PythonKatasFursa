@@ -1,5 +1,5 @@
 from typing import Dict
-
+import re
 
 def parse_log(log: str) -> Dict[str, str]:
     """
@@ -31,8 +31,19 @@ def parse_log(log: str) -> Dict[str, str]:
     Raises:
         ValueError: if the log format is invalid
     """
-    return {}
+    pattern = (
+        r'(?P<client_ip>\d+\.\d+\.\d+\.\d+) - - '
+        r'\[(?P<date>[^\]]+)\] '
+        r'"(?P<http_method>\w+) (?P<path>[^\s]+) HTTP/(?P<http_version>[^"]+)" '
+        r'(?P<status>\d+) (?P<response_bytes>\d+) '
+        r'"[^"]*" "(?P<user_agent>[^"]+)"'
+    )
 
+    match = re.match(pattern, log)
+    if not match:
+        raise ValueError("Invalid log format")
+
+    return match.groupdict()
 
 if __name__ == "__main__":
     log_entry = (
