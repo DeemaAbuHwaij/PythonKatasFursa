@@ -12,11 +12,11 @@ def is_valid_git_tree(tree_map):
     Returns:
         True if the tree is a valid Git tree, False otherwise
     """
-    # Step 1: Build a set of all nodes and a set of all children
+    # build a set of all nodes and a set of all children
     all_nodes = set(tree_map.keys())
     all_children = set(child for children in tree_map.values() for child in children)
 
-    # Step 2: The root is a node that is not anyone's child
+    # check the rif have exactly one root
     roots = all_nodes - all_children
     if len(roots) != 1:
         return False  # Must have exactly one root
@@ -43,7 +43,6 @@ def is_valid_git_tree(tree_map):
     if not dfs(root):
         return False
 
-    # Step 4: Ensure all nodes are visited (tree is connected)
     return visited == all_nodes
 
 
