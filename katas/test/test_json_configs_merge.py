@@ -1,9 +1,8 @@
 import unittest
 from unittest.mock import mock_open, patch
-import builtins
 import json
 from katas.json_config_merge import json_configs_merge
-# Assume json_configs_merge is defined above or imported
+
 
 class TestJsonConfigsMerge(unittest.TestCase):
 
@@ -57,7 +56,11 @@ class TestJsonConfigsMerge(unittest.TestCase):
 
     @patch("builtins.open")
     def test_merge_empty(self, mock_open_builtin):
-        mock_open_builtin.return_value = mock_open(read_data="{}").return_value
+        # Use side_effect to return separate mock file objects for each file
+        mock_open_builtin.side_effect = [
+            mock_open(read_data="{}").return_value,
+            mock_open(read_data="{}").return_value
+        ]
 
         result = json_configs_merge("empty.json", "empty.json")
         self.assertEqual(result, {})
@@ -71,6 +74,7 @@ class TestJsonConfigsMerge(unittest.TestCase):
 
         result = json_configs_merge("a.json", "b.json")
         self.assertEqual(result, {"key": 2})
+
 
 if __name__ == '__main__':
     unittest.main()
