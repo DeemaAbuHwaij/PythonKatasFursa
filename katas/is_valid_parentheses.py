@@ -16,10 +16,10 @@ def is_valid_parentheses(s):
     stack = []
     mapping = {')': '(', ']': '[', '}': '{'}
     for char in s:
-        if char in mapping.values():
+        if char in mapping.values(): #If char is an opening bracket , push it to the stack.
             stack.append(char)
         elif char in mapping:
-            if not stack or stack[-1] != mapping[char]:
+            if not stack or stack[-1] != mapping[char]:  #Fcheck if the stack is empty or the top of the stack doesn't match the expected opening bracket.
                 return False
             stack.pop()
     return not stack
