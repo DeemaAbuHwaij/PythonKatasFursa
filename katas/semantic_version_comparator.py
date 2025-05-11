@@ -18,10 +18,12 @@ def compare_versions(version1, version2):
          0 if version1 = version2
          1 if version1 > version2
     """
+
+    # converts version strings into lists of integers
     v1 = list(map(int, version1.split('.')))
     v2 = list(map(int, version2.split('.')))
 
-    # Pad the shorter version with zeros
+    # Pad the shorter version with zeros to ensures both versions have the same number of components
     max_len = max(len(v1), len(v2))
     v1 += [0] * (max_len - len(v1))
     v2 += [0] * (max_len - len(v2))

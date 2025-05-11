@@ -66,16 +66,15 @@ def json_configs_merge(*json_paths: str) -> dict[str, Any]:
                 a[key] = value
         return a
 
-    def json_configs_merge(*json_paths: str) -> dict[str, Any]:
-        merged_config = {}
-        for path in json_paths:
-            with open(path, 'r') as f:
-                current_config = json.load(f)
-                merged_config = merge_dicts(merged_config, current_config)
-        return merged_config
+    merged_config = {}
+    for path in json_paths:
+        with open(path, 'r') as f:
+            current_config = json.load(f)
+            merged_config = merge_dicts(merged_config, current_config)
+    return merged_config
 
 
 if __name__ == '__main__':
-    # Example usage; make sure the files exist for this to run.
-    config = json_configs_merge('default.json', 'production.json', 'us-east-1-production.json')
-    print(config)
+    # Example usage; make sure the files exist if you run this directly.
+    config = json_configs_merge('default.json', 'local.json')
+    print(json.dumps(config, indent=2))

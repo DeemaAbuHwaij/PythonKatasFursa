@@ -23,7 +23,7 @@ def max_storage_area(containers: List[int]) -> int:
     """
     stack = []
     max_area = 0
-    containers.append(0)  # Sentinel to flush the stack at the end
+    containers.append(0)
 
     for i, h in enumerate(containers):
         while stack and containers[stack[-1]] > h:

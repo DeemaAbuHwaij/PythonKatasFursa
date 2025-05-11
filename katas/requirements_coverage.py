@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Set
 
 
 def select_minimal_test_cases(test_cases: List[List[int]]) -> List[int]:

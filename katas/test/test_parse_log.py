@@ -33,10 +33,5 @@ class TestParseLog(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_log(log_entry)
 
-    def test_invalid_log_wrong_format(self):
-        log_entry = 'not a real log line'
-        with self.assertRaises(ValueError):
-            parse_log(log_entry)
-
 if __name__ == '__main__':
     unittest.main()

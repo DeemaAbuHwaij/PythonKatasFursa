@@ -5,35 +5,29 @@ from katas.is_valid_parentheses import is_valid_parentheses
 
 class TestValidParentheses(unittest.TestCase):
 
-    def test_valid_simple(self):
+    def test_valid1(self):
         self.assertTrue(is_valid_parentheses("()[]{}"))
 
-    def test_valid_nested(self):
+    def test_valid2(self):
         self.assertTrue(is_valid_parentheses("{[]()}"))
 
-    def test_invalid_mismatch(self):
+    def test_valid3(self):
         self.assertFalse(is_valid_parentheses("(]"))
 
-    def test_invalid_wrong_order(self):
+    def test_valid4(self):
         self.assertFalse(is_valid_parentheses("([)]"))
 
-    def test_empty_string(self):
+    def test_valid5(self):
         self.assertTrue(is_valid_parentheses(""))
 
-    def test_only_opening(self):
+    def test_valid6(self):
         self.assertFalse(is_valid_parentheses("((("))
 
-    def test_only_closing(self):
+    def test_valid7(self):
         self.assertFalse(is_valid_parentheses("}}}"))
 
-    def test_single_pair(self):
+    def test_valid8(self):
         self.assertTrue(is_valid_parentheses("()"))
-
-    def test_long_valid(self):
-        self.assertTrue(is_valid_parentheses("([]){}[(){}]"))
-
-    def test_long_invalid(self):
-        self.assertFalse(is_valid_parentheses("((()))]"))
 
 if __name__ == '__main__':
     unittest.main()

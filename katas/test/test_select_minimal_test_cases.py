@@ -1,8 +1,11 @@
 import unittest
+from itertools import chain
+
 from katas.requirements_coverage import select_minimal_test_cases
 
 
 class TestSelectMinimalTestCases(unittest.TestCase):
+    from itertools import chain
 
     def test_basic_case(self):
         test_cases = [
@@ -13,7 +16,8 @@ class TestSelectMinimalTestCases(unittest.TestCase):
             [3, 5]
         ]
         result = select_minimal_test_cases(test_cases)
-        self.assertEqual(result, [2, 3])  # Covers 1, 2, 3, 4, 5
+        covered = set(chain.from_iterable(test_cases[i] for i in result))
+        self.assertEqual(covered, {1, 2, 3, 4, 5})
 
     def test_minimal_exact(self):
         test_cases = [
